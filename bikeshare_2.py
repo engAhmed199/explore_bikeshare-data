@@ -33,7 +33,9 @@ def get_filters():
     # get user input for month (all, january, february, ... , june)
     while True:
       month = input("\npick a month from [ January : June ] or type 'all'\n")
-      if month in MONTHS || month = 'all':
+      if month in MONTHS:
+        break
+      elif day == 'all':
         break
       else:
         print("undefined answer, Try again")
@@ -44,7 +46,7 @@ def get_filters():
       day = input("\npick a day from [ Monday : Sunday ] or type 'all'\n")
       if day in DAYS:
         break
-      elif day = 'all':
+      elif day == 'all':
         break
       else:
         print("undefined answer, Try again")

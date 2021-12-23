@@ -2,12 +2,12 @@ import time
 import pandas as pd
 import numpy as np
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = { 'Chicago': 'chicago.csv',
+              'New York City': 'new_york_city.csv',
+              'Washington': 'washington.csv' }
 
-MONTHS = ['january', 'february', 'march', 'april', 'may', 'june']
-DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'all' ]
+DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all' ]
 
 
 def get_filters():
@@ -35,8 +35,6 @@ def get_filters():
       month = input("\npick a month from [ January : June ] or type 'all'\n")
       if month in MONTHS:
         break
-      elif day == 'all':
-        break
       else:
         print("undefined answer, Try again")
         continue
@@ -45,8 +43,6 @@ def get_filters():
     while True:
       day = input("\npick a day from [ Monday : Sunday ] or type 'all'\n")
       if day in DAYS:
-        break
-      elif day == 'all':
         break
       else:
         print("undefined answer, Try again")
@@ -85,17 +81,14 @@ def load_data(city, month, day):
 
         # filter by month to create the new dataframe
         df = df[df['month'] == month]
-        month = month.title()
 
 
     # filter by day if applicable
     if day != 'all':
 
-        # use the index of the days list to get the corresponding int
-        day = DAYS.index(day) - 1
         # filter by day to create the new dataframe
         df = df[df['day_of_week'] == day]
-        day = day.title()
+    
     return df
 
 def time_stats(df):
@@ -145,7 +138,7 @@ def station_stats(df):
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
-    print('\Trip Duration...\n')
+    print('\nTrip Duration...\n')
     start_time = time.time()
 
     # display total travel time
@@ -162,13 +155,13 @@ def trip_duration_stats(df):
 def user_stats(df):
     """Displays statistics on bikeshare users."""
 
-    print('\User Stats...\n')
+    print('\nUser Stats...\n')
     start_time = time.time()
 
     # Display counts of user types
     try:
-    User_types = df['User Type'].value_counts()
-    print('User Types is : \n', User_types)
+    user_types = df['User Type'].value_counts()
+    print('User Types is : \n', user_types)
     except:
       print("\nFor user types :\nNo data avaliable.")
 

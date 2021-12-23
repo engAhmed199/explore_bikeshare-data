@@ -160,9 +160,9 @@ def user_stats(df):
 
     # Display counts of user types
     try:
-    user_types = df['User Type'].value_counts()
-    print('User Types is : \n', user_types)
-    except:
+    User_types = df['User Type'].value_counts()
+    print('User Types is : \n', User_types)
+    except KeyError:
       print("\nFor user types :\nNo data avaliable.")
 
     # Display counts of gender

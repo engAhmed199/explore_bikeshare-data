@@ -160,8 +160,8 @@ def user_stats(df):
 
     # Display counts of user types
     try:
-    User_types = df['User Type'].value_counts()
-    print('User Types is : \n', User_types)
+      User_types = df['User Type'].value_counts()
+      print('User Types is : \n', User_types)
     except KeyError:
       print("\nFor user types :\nNo data avaliable.")
 

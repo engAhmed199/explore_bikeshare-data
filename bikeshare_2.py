@@ -169,12 +169,10 @@ def user_stats(df):
       print("\nFor user types :\nNo data avaliable.")
 
     # Display counts of gender
-    if 'Gender' in df:
-      gender = df['Gender'].value_counts()
-      print('\nGender Types is : \n', gender)
-    else:
-      print('Gender stats cannot be calculated because Gender does not appear in the dataframe')
-
+    if city != 'Washington':
+        gender = df.groupby(['Gender'])['Gender'].count()
+        print(gender)
+      #gender = df['Gender'].value_counts()
 
     # Display earliest, most recent, and most common year of birth
       Earliest_Year = df['Birth Year'].min()

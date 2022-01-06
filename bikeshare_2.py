@@ -189,12 +189,14 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 	
-    view_data  = input("Would you like to view 5 rows of individual trip data? Enter yes or no?")
-    x = 0
+     x = 1
     while True:
-    	print(df.iloc[x:x+5])
-     	x+= 5
-    	view_display = input("Do you wish to continue?: ").lower()
+        raw = input('\nWould you like to see another trips? Enter yes or no.\n')
+        if raw.lower() == 'yes':
+            print(df[x:x+5])
+            x = x+5
+        else:
+            break
 
 def main():
     while True:

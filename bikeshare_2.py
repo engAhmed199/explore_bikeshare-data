@@ -24,8 +24,9 @@ def get_filters():
 
     while True:
       city = input("\npick a city from [ New York City, Chicago or Washington ]\n")
-      if city in ('Chicago', 'New York City', 'Washington'):
-        break
+      city = city.lower()
+      if city in ('New York City', 'Chicago', 'Washington'):
+	break
       else:
         print("undefined answer, Try again")
         continue
@@ -33,6 +34,7 @@ def get_filters():
     # get user input for month (all, january, february, ... , june)
     while True:
       month = input("\npick a month from [ January : June ] or type 'all'\n")
+      month = month.lower()
       if month in MONTHS:
         break
       else:
@@ -42,6 +44,7 @@ def get_filters():
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
       day = input("\npick a day from [ Monday : Sunday ] or type 'all'\n")
+      day = day.lower()
       if day in DAYS:
         break
       else:
@@ -166,11 +169,12 @@ def user_stats(df):
       print("\nFor user types :\nNo data avaliable.")
 
     # Display counts of gender
-    try:
-      Gender_types = df['Gender'].value_counts()
-      print('\nGender Types is : \n', Gender_types)
-    except KeyError:
-      print("\nFor gender :\nNo data available.")
+    if 'Gender' in df:
+      gender = df['Gender'].value_counts()
+      print('\nGender Types is : \n', gender)
+    else:
+      print('Gender stats cannot be calculated because Gender does not appear in the dataframe')
+
 
     # Display earliest, most recent, and most common year of birth
       Earliest_Year = df['Birth Year'].min()
@@ -184,6 +188,13 @@ def user_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+	
+    view_data  = input("Would you like to view 5 rows of individual trip data? Enter yes or no?")
+    x = 0
+    while True:
+    	print(df.iloc[x:x+5])
+     	x+= 5
+    	view_display = input("Do you wish to continue?: ").lower()
 
 def main():
     while True:

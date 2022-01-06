@@ -29,12 +29,11 @@ def get_filters():
 	break
       else:
         print("undefined answer, Try again")
-        continue
+        
 
     # get user input for month (all, january, february, ... , june)
     while True:
       month = input("\npick a month from [ January : June ] or type 'all'\n")
-      month = month.lower()
       if month in MONTHS:
         break
       else:
@@ -44,7 +43,6 @@ def get_filters():
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
       day = input("\npick a day from [ Monday : Sunday ] or type 'all'\n")
-      day = day.lower()
       if day in DAYS:
         break
       else:
@@ -172,7 +170,6 @@ def user_stats(df):
     if city != 'Washington':
         gender = df.groupby(['Gender'])['Gender'].count()
         print(gender)
-      #gender = df['Gender'].value_counts()
 
     # Display earliest, most recent, and most common year of birth
       Earliest_Year = df['Birth Year'].min()
@@ -187,7 +184,7 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 	
-     x = 1
+    x = 1;
     while True:
         raw = input('\nWould you like to see another trips? Enter yes or no.\n')
         if raw.lower() == 'yes':

@@ -25,11 +25,11 @@ def get_filters():
     while True:
       city = input("\npick a city from [ New York City, Chicago or Washington ]\n")
       city = city.lower()
-      if city in ('New York City', 'Chicago', 'Washington'):
-	break
+      if city in ['New York City', 'Chicago', 'Washington']:
+        break
       else:
         print("undefined answer, Try again")
-        
+        continue
 
     # get user input for month (all, january, february, ... , june)
     while True:
@@ -153,7 +153,7 @@ def trip_duration_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-def user_stats(df):
+def user_stats(df, city):
     """Displays statistics on bikeshare users."""
 
     print('\nUser Stats...\n')
@@ -168,8 +168,8 @@ def user_stats(df):
 
     # Display counts of gender
     if city != 'Washington':
-        gender = df.groupby(['Gender'])['Gender'].count()
-        print(gender)
+      gend = df.groupby(['Gender'])['Gender'].count()
+      print(gend)
 
     # Display earliest, most recent, and most common year of birth
       Earliest_Year = df['Birth Year'].min()
@@ -183,10 +183,9 @@ def user_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-	
-    x = 1;
+    x = 1
     while True:
-        raw = input('\nWould you like to see another trips? Enter yes or no.\n')
+        raw = input('\nWould you like to view 5 rows of individual trip data? Enter yes or no?\n')
         if raw.lower() == 'yes':
             print(df[x:x+5])
             x = x+5
